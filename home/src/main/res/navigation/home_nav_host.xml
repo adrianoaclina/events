@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/home_nav_host"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:label="Home"
+        tools:layout="@layout/fragment_home"
+        android:name="br.com.events.home.presentation.homefragment.HomeFragment">
+
+        <action
+            android:id="@+id/navToEventDetails"
+            app:destination="@id/eventDetailsFragment">
+            <argument
+                android:name="eventId"
+                app:argType="string" />
+            <argument
+                android:name="eventTitle"
+                app:argType="string" />
+            <argument
+                android:name="eventPrice"
+                app:argType="string" />
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/eventDetailsFragment"
+        android:label="EventDetails"
+        tools:layout="@layout/fragment_event_details"
+        android:name="br.com.events.home.presentation.eventdetails.EventDetailsFragment">
+
+        <argument
+            android:name="eventId"
+            app:argType="string" />
+        <argument
+            android:name="eventTitle"
+            app:argType="string" />
+        <argument
+            android:name="eventPrice"
+            app:argType="string" />
+
+        <action
+            android:id="@+id/openCheckInBottomSheet"
+            app:popUpTo="@id/checkInBottomSheet"
+            app:popUpToInclusive="true"
+            app:destination="@id/checkInBottomSheet"/>
+    </fragment>
+
+    <dialog
+        android:id="@+id/checkInBottomSheet"
+        android:name="br.com.events.home.presentation.checkin.CheckInBottomSheetFragment"
+        tools:layout="@layout/fragment_bottom_sheet_check_in">
+
+        <argument
+            android:name="eventId"
+            app:argType="string" />
+        <argument
+            android:name="eventTitle"
+            app:argType="string" />
+        <argument
+            android:name="eventPrice"
+            app:argType="string" />
+    </dialog>
+
+</navigation>
